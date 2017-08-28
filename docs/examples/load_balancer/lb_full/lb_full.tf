@@ -13,6 +13,7 @@ variable "fingerprint" {}
 variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
+variable "ssh_public_key" {}
 
 
 provider "baremetal" {
@@ -136,6 +137,7 @@ resource "baremetal_core_instance" "instance1" {
   hostname_label = "be-instance1"
   metadata {
     user_data = "${base64encode(var.user-data)}"
+    ssh_authorized_keys = "${var.ssh_public_key}"
   }
 }
 
@@ -149,6 +151,7 @@ resource "baremetal_core_instance" "instance2" {
   hostname_label = "be-instance2"
   metadata {
     user_data = "${base64encode(var.user-data)}"
+    ssh_authorized_keys = "${var.ssh_public_key}"
   }
 }
 
@@ -173,6 +176,9 @@ echo '</code></pre></body></html>' >> /var/www/html/index.html
 firewall-offline-cmd --add-service=http
 systemctl enable  firewalld
 systemctl restart  firewalld
+
+echo 'Header set Set-Cookie "lb-session1=1; Path=/; Expires=Wed, 13 Jan 2021 22:23:01 GMT"' >> /etc/httpd/conf/httpd.conf
+systemctl restart  httpd.service
 
 touch ~opc/userdata.`date +%s`.finish
 echo '################### webserver userdata ends #######################'
@@ -202,6 +208,11 @@ resource "baremetal_load_balancer_backendset" "lb-bes1" {
     protocol = "HTTP"
     response_body_regex = ".*"
     url_path = "/"
+  }
+
+  session_persistence_configuration {
+    cookie_name = "lb-session1"
+    disable_fallback = true
   }
 }
 
