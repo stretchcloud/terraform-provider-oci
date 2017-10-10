@@ -127,6 +127,7 @@ const (
 	DiskRedundancyNormal DiskRedundancy = "NORMAL"
 
 	// DB Resources
+	resourceDataGuardAssociations resourceName = "dataGuardAssociations"
 	resourceDBHomes               resourceName = "dbHomes"
 	resourceDBNodes               resourceName = "dbNodes"
 	resourceDBSystems             resourceName = "dbSystems"
