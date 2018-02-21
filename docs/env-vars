@@ -1,15 +1,15 @@
 ### Authentication details
-export TF_VAR_tenancy_ocid="ocid1.tenancy.oc1..aaaaaaaaqmq5gmfb7vyqn7smwvyk7orckdtwa5wf3f2xqe2i34zygqqa6bha"
-export TF_VAR_user_ocid="ocid1.user.oc1..aaaaaaaa4al7gtyucaw7jyzk73aldx7qhfpy476ccd6ru6vywstixdrkhwqa"
-export TF_VAR_fingerprint="c2:b8:3a:2c:30:48:14:f3:98:e3:92:1f:d6:b9:e6:54"
-export TF_VAR_private_key_path="/Users/prassark/.oci/oci_api_key.pem"
+export TF_VAR_tenancy_ocid="Tenancy OCID"
+export TF_VAR_user_ocid="User OCID"
+export TF_VAR_fingerprint="PEM Fingerprint"
+export TF_VAR_private_key_path="API Key PEM File Path"
 
 ### Region
 export TF_VAR_region="us-ashburn-1"
 
 ### Compartment
-export TF_VAR_compartment_ocid="ocid1.compartment.oc1..aaaaaaaaogxv37wikdmc4stmjevuqdn3vdj7tkw7kmrtnezi2tfyffckoifq"
+export TF_VAR_compartment_ocid="Compartment OCID"
 
 ### Public/private keys used on the instance
-export TF_VAR_ssh_public_key=$(cat /Users/prassark/Documents/ssh-keys/id_rsa.pub)
-export TF_VAR_ssh_private_key=$(cat /Users/prassark/Documents/ssh-keys/id_rsa)
+export TF_VAR_ssh_public_key=$(cat <path to the .pub file>)
+export TF_VAR_ssh_private_key=$(cat <path to the private key file>)
